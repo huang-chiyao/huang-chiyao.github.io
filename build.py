@@ -17,11 +17,11 @@ def get_personal_data():
                     Previously, I received my master's degree in Mechanical Engineering at the National Taiwan University.  
                 </p>
                 <p>
-                    My research interests lie on robot perception, learning-based 3D reconstruction, learning-based large-scale visual odometry, 
+                    My research interests lie on 3D reconstruction, learning-based large-scale visual odometry, 
                     and 3D semantic understanding in complex and dynamic environments.
                 </p>
                 <p>
-                    <a href="https://cy.huang.github.io/assets/pdf/CV.pdf" target="_blank" style="margin-right: 15px"><i class="fa fa-address-card fa-lg"></i> CV</a>
+                    <a href="https://cyhuang.github.io/assets/pdf/CV.pdf" target="_blank" style="margin-right: 15px"><i class="fa fa-address-card fa-lg"></i> CV</a>
                     <a href="cy.huang@asu.edu" style="margin-right: 15px"><i class="far fa-envelope-open fa-lg"></i> Mail</a>
                     <a href="" target="_blank" style="margin-right: 15px"><i class="fab fa-twitter fa-lg"></i> Twitter</a>
                     <a href="" target="_blank" style="margin-right: 15px"><i class="fa-solid fa-book"></i> Scholar</a>
