@@ -12,7 +12,7 @@ def get_personal_data():
                 <p>
                     I am currently a PhD student working with <a href="https://yezhouyang.engineering.asu.edu/">Dr. Yezhou Yang</a>
                     at at School of Computing and Augmented Intelligence (SCAI), Arizona State University. 
-                    Before coming to ASU, I was a foundational VR/AR engineer of HTC VIVE for three years. 
+                    Before coming to ASU, I was a foundational VR/AR engineer of <a href="https://www.vive.com/us/">HTC VIVE</a>. 
                     I developed a VR/AR tracking technique, which is used in almost all VR/AR products in HTC VIVE. 
                     Previously, I received my master's degree in Mechanical Engineering at the National Taiwan University.  
                 </p>
@@ -33,7 +33,7 @@ def get_personal_data():
             <div class="col-sm-12" style="">
                 <h4>Homepage Template</h4>
                 <p>
-                    I got this clean and concise website template from <a href="https://github.com/m-niemeyer/m-niemeyer.github.io" Michael Niemeyer</a>
+                    I got this clean and concise website template from <a href="https://github.com/m-niemeyer/m-niemeyer.github.io">Michael Niemeyer</a>
                 </p>
             </div>
     """
