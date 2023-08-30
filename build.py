@@ -33,7 +33,7 @@ def get_personal_data():
             <div class="col-sm-12" style="">
                 <h4>Homepage Template</h4>
                 <p>
-                    I got this clean and concise website template from <a href="https://github.com/m-niemeyer/m-niemeyer.github.io">Michael Niemeyer</a>
+                    I got this clean and concise website template from <a href="https://github.com/m-niemeyer/m-niemeyer.github.io">Michael Niemeyer</a>.
                 </p>
             </div>
     """
@@ -198,7 +198,7 @@ def get_index_html():
     <div class="container">
         <div class="row" style="margin-top: 3em;">
             <div class="col-sm-12" style="margin-bottom: 1em;">
-            <h3 class="display-4" style="text-align: center;"><span style="font-weight: bold;">{name[0]}</span> {name[1]}</h3>
+            <h3 class="display-4" style="text-align: center;"><span">{name[0]}</span> {name[1]}</h3>
             </div>
             <br>
             <div class="col-md-8" style="">
