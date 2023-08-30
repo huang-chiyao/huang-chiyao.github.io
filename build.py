@@ -10,7 +10,7 @@ def get_personal_data():
                 <p>Hi there, welcome to my place. This is Chi-Yao Huang.</p>
 
                 <p>
-                    I am currently a PhD student working with <a href="https://yezhouyang.engineering.asu.edu/">Dr. Yezhou Yang</a>
+                    I am currently a PhD student working with <a href="https://yezhouyang.engineering.asu.edu/">Yezhou Yang</a>
                     at at School of Computing and Augmented Intelligence (SCAI), Arizona State University. 
                     Before coming to ASU, I was a foundational VR/AR engineer of <a href="https://www.vive.com/us/">HTC VIVE</a>. 
                     I developed a VR/AR tracking technique, which is used in almost all VR/AR products in HTC VIVE. 
