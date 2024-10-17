@@ -12,8 +12,8 @@ def get_personal_data():
                 <p>
                     I'm currently pursuing my PhD under the guidance of <a href="https://yezhouyang.engineering.asu.edu/">Yezhou Yang</a> 
                     at the School of Computing and Augmented Intelligence (SCAI), Arizona State University. 
-                    Prior to joining ASU, I worked as a foundational VR/AR engineer at <a href="https://www.vive.com/us/">HTC VIVE</a>, 
-                    where I developed VR/AR tracking technologies that are now integrated into almost all HTC VIVE products. 
+                    Prior to joining ASU, I worked as a foundational VR/AR engineer at <a href="https://www.vive.com/us/">VIVE</a>, 
+                    where I developed VR/AR tracking technologies that are now integrated into almost all VIVE products. 
                     I hold a master's degree in Mechanical Engineering from National Taiwan University.  
                 </p>
                 <p>
@@ -31,17 +31,15 @@ def get_personal_data():
     """
     footer = """
             <div class="col-sm-12" style="">
-                <h4>Homepage Template</h4>
-                <p>
-                    I got this clean and concise website template from <a href="https://github.com/m-niemeyer/m-niemeyer.github.io">Michael Niemeyer</a>.
-                </p>
+
             </div>
     """
     return name, bio_text, footer
 
 def get_author_dict():
     return {
-        # 'Andreas Geiger': 'https://www.cvlibs.net/',
+        # 'Yezhou Yang': 'https://yezhouyang.engineering.asu.edu/',
+        # 'Zeel Bhatt': 'https://zeelbhatt.github.io/',
         }
 
 def generate_person_html(persons, connection=", ", make_bold=True, make_bold_name='Chi-Yao Huang', add_links=True):
