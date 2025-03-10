@@ -7,28 +7,43 @@ def get_personal_data():
     github = "huang-chiyao"
     linkedin = "chi-yao-huang"
     bio_text = f"""
-                <p>Hi there! Welcome to my personal space. I'm Chi-Yao Huang.</p>
+        <p>Hello and welcome to my place. I'm Chi-Yao Huang.</p>
 
-                <p>
-                    I'm currently pursuing my PhD under the guidance of <a href="https://yezhouyang.engineering.asu.edu/">Yezhou Yang</a> 
-                    at the School of Computing and Augmented Intelligence (SCAI), Arizona State University. 
-                    Prior to joining ASU, I worked as a foundational VR/AR engineer at <a href="https://www.vive.com/us/">VIVE</a>, 
-                    where I developed VR/AR tracking technologies that are now integrated into almost all VIVE products. 
-                    I hold a master's degree in Mechanical Engineering from National Taiwan University.  
-                </p>
-                <p>
-                    My research focuses on learning-based large-scale visual odometry, SLAM, spatial understanding, and spatial intelligence.
-                </p>
-                </p>
-                <p>
-                    <a href="https://huang-chiyao.github.io/assets/pdf/CV.pdf" target="_blank" style="margin-right: 15px"><i class="fa fa-address-card fa-lg"></i> CV</a>
-                    <a href="cy.huang@asu.edu" style="margin-right: 15px"><i class="far fa-envelope-open fa-lg"></i> Mail</a>
-                    <a href="https://x.com/chiyao_huang" target="_blank" style="margin-right: 15px"><i class="fab fa-twitter fa-lg"></i> Twitter</a>
-                    <a href="" target="_blank" style="margin-right: 15px"><i class="fa-solid fa-book"></i> Scholar</a>
-                    <a href="https://github.com/huang-chiyao" target="_blank" style="margin-right: 15px"><i class="fab fa-github fa-lg"></i> Github</a>
-                    <a href="https://www.linkedin.com/in/chi-yao-huang" target="_blank" style="margin-right: 15px"><i class="fab fa-linkedin fa-lg"></i> LinkedIn</a>
-                </p>
-    """
+        <p>
+            I am currently pursuing my Ph.D. under the guidance of Professor
+            <a href="https://yezhouyang.engineering.asu.edu/" target="_blank"> Yezhou Yang</a> 
+            at the School of Computing and Augmented Intelligence (SCAI), Arizona State University.
+            Prior to joining ASU, I served as a pioneering VR/AR engineer at 
+            <a href="https://www.vive.com/us/" target="_blank">VIVE</a> (now part of Google), where I developed innovative tracking technologies that power nearly all VIVE products.
+            I also hold a master's degree in Mechanical Engineering from National Taiwan University.
+        </p>
+
+        <p>
+            My research focuses on developing learning-based solutions for large-scale visual odometry, SLAM, and spatial intelligence.
+        </p>
+
+        <p>
+            <a href="https://huang-chiyao.github.io/assets/pdf/CV.pdf" target="_blank" style="margin-right: 15px">
+                <i class="fa fa-address-card fa-lg"></i> CV
+            </a>
+            <a href="mailto:cy.huang@asu.edu" style="margin-right: 15px">
+                <i class="far fa-envelope-open fa-lg"></i> Mail
+            </a>
+            <a href="https://twitter.com/chiyao_huang" target="_blank" style="margin-right: 15px">
+                <i class="fab fa-twitter fa-lg"></i> Twitter
+            </a>
+            <a href="https://scholar.google.com/citations?user=YOUR_GOOGLE_SCHOLAR_ID" target="_blank" style="margin-right: 15px">
+                <i class="fa-solid fa-book"></i> Scholar
+            </a>
+            <a href="https://github.com/huang-chiyao" target="_blank" style="margin-right: 15px">
+                <i class="fab fa-github fa-lg"></i> Github
+            </a>
+            <a href="https://www.linkedin.com/in/chi-yao-huang" target="_blank" style="margin-right: 15px">
+                <i class="fab fa-linkedin fa-lg"></i> LinkedIn
+            </a>
+        </p>
+        """
+
     footer = """
             <div class="col-sm-12" style="">
 
