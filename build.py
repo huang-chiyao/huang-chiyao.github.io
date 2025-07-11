@@ -53,8 +53,8 @@ def get_personal_data():
 
 def get_author_dict():
     return {
-        # 'Yezhou Yang': 'https://yezhouyang.engineering.asu.edu/',
-        # 'Zeel Bhatt': 'https://zeelbhatt.github.io/',
+        'Yezhou Yang': 'https://yezhouyang.engineering.asu.edu/',
+        'Zeel Bhatt': 'https://zeelbhatt.github.io/',
         }
 
 def generate_person_html(persons, connection=", ", make_bold=True, make_bold_name='Chi-Yao Huang', add_links=True):
