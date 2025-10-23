@@ -20,7 +20,7 @@ def render_video(url: str) -> str:
         return f'''
 <div class="embed-responsive embed-responsive-16by9 my-2">
   <iframe class="embed-responsive-item"
-          src="https://www.youtube.com/embed/{video_id}?rel=0&modestbranding=1"
+          src="https://www.youtube.com/embed/{video_id}?rel=0&modestbranding=1&autoplay=1&mute=1&playsinline=1&loop=1"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           allowfullscreen loading="lazy"></iframe>
 </div>'''
