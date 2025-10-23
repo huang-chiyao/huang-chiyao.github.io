@@ -1,4 +1,51 @@
 from pybtex.database.input import bibtex
+from urllib.parse import urlparse, parse_qs
+
+def render_video(url: str) -> str:
+    url_lower = url.lower()
+    # YouTube
+    if "youtube.com" in url_lower or "youtu.be" in url_lower:
+        parsed = urlparse(url)
+        video_id = None
+        if "youtu.be" in parsed.netloc:
+            video_id = parsed.path.lstrip("/")
+        else:
+            if parsed.path.startswith("/embed/"):
+                video_id = parsed.path.split("/embed/")[1].split("/")[0]
+            if not video_id:
+                qs = parse_qs(parsed.query)
+                video_id = (qs.get("v") or [None])[0]
+        if not video_id:
+            return f'<a href="{url}" target="_blank">Video</a>'
+        return f'''
+<div class="embed-responsive embed-responsive-16by9 my-2">
+  <iframe class="embed-responsive-item"
+          src="https://www.youtube.com/embed/{video_id}?rel=0&modestbranding=1"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen loading="lazy"></iframe>
+</div>'''
+
+    # Vimeo
+    if "vimeo.com" in url_lower:
+        video_id = url.rstrip("/").split("/")[-1].split("?")[0]
+        return f'''
+<div class="embed-responsive embed-responsive-16by9 my-2">
+  <iframe class="embed-responsive-item"
+          src="https://player.vimeo.com/video/{video_id}"
+          allow="autoplay; fullscreen; picture-in-picture"
+          allowfullscreen loading="lazy"></iframe>
+</div>'''
+
+    # Direct video files
+    if url_lower.endswith((".mp4", ".webm", ".ogg")):
+        return f'''
+<video class="img-fluid my-2" controls preload="metadata">
+  <source src="{url}">
+  Your browser does not support the video tag.
+</video>'''
+
+    # Fallback: just a link
+    return f'<a href="{url}" target="_blank">Video</a>'
 
 def get_personal_data():
     name = ["Chi-Yao", "Huang"]
@@ -19,7 +66,7 @@ def get_personal_data():
         </p>
 
         <p>
-            My research focuses on developing learning-based solutions for large-scale visual odometry, SLAM, and spatial intelligence.
+            My research focuses on developing "latent-centric" solutions for visual odometry, SLAM, and spatial intelligence.
         </p>
 
         <p>
@@ -76,9 +123,17 @@ def generate_person_html(persons, connection=", ", make_bold=True, make_bold_nam
     return s
 
 def get_paper_entry(entry_key, entry):
-    s = """<div style="margin-bottom: 3em;"> <div class="row"><div class="col-sm-3">"""
-    s += f"""<img src="{entry.fields['img']}" class="img-fluid img-thumbnail" alt="Project image">"""
-    s += """</div><div class="col-sm-9">"""
+    s = """<div style="margin-bottom: 3em;"> <div class="row">"""
+    s += """<div class="col-sm-4 d-flex flex-column align-items-center">"""
+
+    # Paper image
+    s += f"""<img src="{entry.fields['img']}" class="img-fluid img-thumbnail mb-2" alt="Project image" style="max-width: 95%;">"""
+
+    # Video preview beside image
+    if 'video' in entry.fields:
+        s += render_video(entry.fields['video']).replace('embed-responsive-16by9', 'embed-responsive-4by3').replace('my-2', 'my-1')
+
+    s += """</div><div class="col-sm-8">"""
 
     if 'award' in entry.fields.keys():
         s += f"""<a href="{entry.fields['html']}" target="_blank">{entry.fields['title']}</a> <span style="color: red;">({entry.fields['award']})</span><br>"""
@@ -89,6 +144,7 @@ def get_paper_entry(entry_key, entry):
     s += f"""<span style="font-style: italic;">{entry.fields['booktitle']}</span>, {entry.fields['year']} <br>"""
 
     artefacts = {'html': 'Project Page', 'pdf': 'Paper', 'supp': 'Supplemental', 'video': 'Video', 'poster': 'Poster', 'code': 'Code'}
+
     i = 0
     for (k, v) in artefacts.items():
         if k in entry.fields.keys():
@@ -197,13 +253,6 @@ def get_index_html():
                 <img src="assets/img/profile.jpg" class="img-thumbnail" width="280px" alt="Profile picture">
             </div>
         </div>
-        
-        <div class="row" style="margin-top: 1em;">
-            <div class="col-sm-12" style="">
-                <h4>Products</h4>
-                {products}
-            </div>
-        </div>
 
         <div class="row" style="margin-top: 1em;">
             <div class="col-sm-12" style="">
@@ -211,6 +260,14 @@ def get_index_html():
                 {pub}
             </div>
         </div>
+
+        <div class="row" style="margin-top: 3em;">
+            <div class="col-sm-12" style="">
+                <h4>Products</h4>
+                {products}
+            </div>
+        </div>
+
         <div class="row" style="margin-top: 3em;">
             <div class="col-sm-12" style="">
                 <h4>Talks</h4>
