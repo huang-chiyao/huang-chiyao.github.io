@@ -129,33 +129,33 @@ def get_paper_entry(entry_key, entry):
 
     # Begin entry block
     s = """<div style="margin-bottom: 3em;">
-<div class="row">
+    <div class="row">
 
-  <!-- Left side: image + video side-by-side -->
-  <div class="col-sm-4">
-    <div class="row no-gutters align-items-center">
-      <div class="col-6 pr-1">
-        <img src="{img_src}" class="img-fluid img-thumbnail" alt="Project image" style="max-width:100%;">
-      </div>
-""".replace("{img_src}", img_src)
+    <!-- Left side: image + video side-by-side (wider column) -->
+    <div class="col-sm-6">   <!-- increased from col-sm-4 -->
+        <div class="row no-gutters align-items-center">
+        <div class="col-5 pr-1">   <!-- image smaller -->
+            <img src="{img_src}" class="img-fluid img-thumbnail" alt="Project image" style="max-width:100%;">
+        </div>
+    """.replace("{img_src}", img_src)
 
-    # If video exists, place it beside the image
+    # video part (same as before)
     if video_url:
         s += f"""
-      <div class="col-10 pl-1 d-flex justify-content-center align-items-center">
-        {render_video(video_url).replace('embed-responsive-16by9', 'embed-responsive-4by3').replace('my-2', 'my-0')}
-      </div>
+        <div class="col-7 pl-1 d-flex justify-content-center align-items-center">
+            {render_video(video_url).replace('embed-responsive-16by9', 'embed-responsive-4by3').replace('my-2', 'my-0')}
+        </div>
         """
     else:
-        s += """<div class="col-6"></div>"""
+        s += """<div class="col-7"></div>"""
 
     s += """
+        </div>
     </div>
-  </div>
 
-  <!-- Right side: text -->
-  <div class="col-sm-8">
-"""
+    <!-- Right side: text -->
+    <div class="col-sm-6">   <!-- decreased from col-sm-8 -->
+    """
 
     if 'award' in entry.fields.keys():
         s += f"""<a href="{entry.fields['html']}" target="_blank">{entry.fields['title']}</a> <span style="color: red;">({entry.fields['award']})</span><br>"""
