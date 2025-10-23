@@ -123,17 +123,39 @@ def generate_person_html(persons, connection=", ", make_bold=True, make_bold_nam
     return s
 
 def get_paper_entry(entry_key, entry):
-    s = """<div style="margin-bottom: 3em;"> <div class="row">"""
-    s += """<div class="col-sm-4 d-flex flex-column align-items-center">"""
+    # safe fallbacks
+    img_src = entry.fields.get('img', 'assets/img/default_project.jpg')
+    video_url = entry.fields.get('video', '').strip()
 
-    # Paper image
-    s += f"""<img src="{entry.fields['img']}" class="img-fluid img-thumbnail mb-2" alt="Project image" style="max-width: 95%;">"""
+    # Begin entry block
+    s = """<div style="margin-bottom: 3em;">
+<div class="row">
 
-    # Video preview beside image
-    if 'video' in entry.fields:
-        s += render_video(entry.fields['video']).replace('embed-responsive-16by9', 'embed-responsive-4by3').replace('my-2', 'my-1')
+  <!-- Left side: image + video side-by-side -->
+  <div class="col-sm-4">
+    <div class="row no-gutters align-items-center">
+      <div class="col-6 pr-1">
+        <img src="{img_src}" class="img-fluid img-thumbnail" alt="Project image" style="max-width:100%;">
+      </div>
+""".replace("{img_src}", img_src)
 
-    s += """</div><div class="col-sm-8">"""
+    # If video exists, place it beside the image
+    if video_url:
+        s += f"""
+      <div class="col-10 pl-1 d-flex justify-content-center align-items-center">
+        {render_video(video_url).replace('embed-responsive-16by9', 'embed-responsive-4by3').replace('my-2', 'my-0')}
+      </div>
+        """
+    else:
+        s += """<div class="col-6"></div>"""
+
+    s += """
+    </div>
+  </div>
+
+  <!-- Right side: text -->
+  <div class="col-sm-8">
+"""
 
     if 'award' in entry.fields.keys():
         s += f"""<a href="{entry.fields['html']}" target="_blank">{entry.fields['title']}</a> <span style="color: red;">({entry.fields['award']})</span><br>"""
