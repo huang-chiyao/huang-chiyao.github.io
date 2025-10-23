@@ -1,6 +1,8 @@
 from pybtex.database.input import bibtex
 from urllib.parse import urlparse, parse_qs
 
+MEDIA_HEIGHT = 180  # put this near the top of your file (once)
+
 def render_video(url: str) -> str:
     url_lower = url.lower()
     # YouTube
@@ -217,16 +219,71 @@ def get_publications_html():
 
 def get_products_html():
     products = [
-        {"name": "VIVE Focus", "link": "https://www.vive.com/us/product/vive-focus3/overview/"},
-        {"name": "VIVE XR", "link": "https://www.vive.com/us/product/vive-xr-elite/overview/"},
-        {"name": "VIVE Flow", "link": "https://www.vive.com/us/product/vive-flow/overview/"},
+        {
+            "name": "VIVE Focus 3",
+            "img": "assets/img/vive_focus3.jpg",
+            "video": "https://www.youtube.com/watch?v=xYEVcptQ33E",
+            "desc": "Enterprise-grade mixed reality headset with high-resolution displays and ergonomic comfort.",
+            "link": "https://www.vive.com/us/product/vive-focus3/overview/",
+        },
+        {
+            "name": "VIVE XR Elite",
+            "img": "assets/img/vive_xr_elite.jpg",
+            "video": "https://www.youtube.com/watch?v=DKs5ncz4JlE&t=1s",
+            "desc": "Lightweight, modular XR headset built for immersive mixed reality experiences.",
+            "link": "https://www.vive.com/us/product/vive-xr-elite/overview/",
+        },
+        {
+            "name": "VIVE Flow",
+            "img": "assets/img/vive_flow.jpg",
+            "video": "https://www.youtube.com/watch?v=xzbRqENGjS0",
+            "desc": "Compact, glasses-style VR headset designed for wellness, streaming, and portability.",
+            "link": "https://www.vive.com/us/product/vive-flow/overview/",
+        },
     ]
-    
-    s = "<ul>"
+
+    s = ""
     for product in products:
-        s += f'<li><a href="{product["link"]}" target="_blank">{product["name"]}</a></li>'
-    s += "</ul>"
+        img_src = product.get("img", "assets/img/default_project.jpg")
+        video_url = product.get("video", "").strip()
+
+        # Same layout as publications
+        s += f"""<div style="margin-bottom: 3em;">
+<div class="row">
+
+  <!-- Left side: image + video side-by-side (wider column) -->
+  <div class="col-sm-6">
+    <div class="row no-gutters align-items-center">
+      <div class="col-5 pr-1">
+        <img src="{img_src}" class="img-fluid img-thumbnail" alt="{product['name']} image" style="max-width:100%;">
+      </div>
+"""
+        # Video section
+        if video_url:
+            s += f"""
+      <div class="col-7 pl-1 d-flex justify-content-center align-items-center">
+        {render_video(video_url).replace('embed-responsive-16by9', 'embed-responsive-4by3').replace('my-2', 'my-0')}
+      </div>
+"""
+        else:
+            s += """<div class="col-7"></div>"""
+
+        # Right side text
+        s += f"""
+    </div>
+  </div>
+
+  <!-- Right side: text -->
+  <div class="col-sm-6">
+    <h5><a href="{product['link']}" target="_blank">{product['name']}</a></h5>
+    <p>{product['desc']}</p>
+  </div>
+</div>
+</div>
+"""
+
     return s
+
 
 def get_talks_html():
     parser = bibtex.Parser()
