@@ -314,42 +314,42 @@ def get_sponsors_html():
         {
             "name": "ASU Ira A. Fulton Schools of Engineering Fellowship",
             "short": "ASU Fulton Fellowship",
-            "logo": "assets/img/sponsors/asu_fulton.png",   # add this image
+            "logo": "assets/img/sponsors/asu_fulton.png",
             "link": "https://engineering.asu.edu/",
         },
         {
             "name": "Toyota Research Institute of North America (TRINA)",
             "short": "Toyota TRINA",
-            "logo": "assets/img/sponsors/toyota_trina.png", # add this image
+            "logo": "assets/img/sponsors/toyota_trina.png",
             "link": "https://www.tri.global/",
         },
     ]
 
-    # Acknowledgment line
     s = """
 <div style="margin-bottom: 1.5em;">
   <p class="mb-3">
     This work is supported by the <strong>ASU Ira A. Fulton Schools of Engineering Fellowship</strong>
     and <strong>Toyota Research Institute of North America (TRINA)</strong>.
   </p>
-  <div class="row text-center align-items-center">
+  <div class="row text-center align-items-center justify-content-center">
 """
 
-    # Logos (side-by-side, responsive)
+    # Consistent logo box
     for sp in sponsors:
         logo = sp["logo"]
         name = sp["name"]
         link = sp.get("link", "")
-        card = f'''
-    <div class="col-6 col-md-4 col-lg-3 mb-3 d-flex flex-column align-items-center">
-      <a href="{link}" target="_blank" rel="noopener" aria-label="{name}">
-        <img src="{logo}" class="img-fluid" alt="{name} logo"
-             style="max-height:60px; object-fit:contain;">
-      </a>
+        s += f'''
+    <div class="col-6 col-md-4 col-lg-3 mb-4 d-flex flex-column align-items-center">
+      <div style="width:180px; height:80px; display:flex; justify-content:center; align-items:center; background:transparent;">
+        <a href="{link}" target="_blank" rel="noopener" aria-label="{name}">
+          <img src="{logo}" alt="{name} logo"
+               style="max-width:160px; max-height:60px; object-fit:contain;">
+        </a>
+      </div>
       <div class="mt-2" style="font-size:0.95rem;">{sp["short"]}</div>
     </div>
 '''
-        s += card
 
     s += """
   </div>
