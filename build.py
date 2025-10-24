@@ -341,10 +341,10 @@ def get_sponsors_html():
         link = sp.get("link", "")
         s += f'''
     <div class="col-6 col-md-4 col-lg-3 mb-4 d-flex flex-column align-items-center">
-      <div style="width:180px; height:80px; display:flex; justify-content:center; align-items:center; background:transparent;">
+      <div style="width:240px; height:150px; display:flex; justify-content:center; align-items:center; background:transparent;">
         <a href="{link}" target="_blank" rel="noopener" aria-label="{name}">
           <img src="{logo}" alt="{name} logo"
-               style="max-width:160px; max-height:60px; object-fit:contain;">
+               style="max-width:240px; max-height:150px; object-fit:contain;">
         </a>
       </div>
       <div class="mt-2" style="font-size:0.95rem;">{sp["short"]}</div>
