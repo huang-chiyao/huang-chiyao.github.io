@@ -319,7 +319,7 @@ def get_sponsors_html():
         },
         {
             "name": "Toyota Research Institute of North America (TRINA)",
-            "short": "Toyota TRINA",
+            "short": "TRINA",
             "logo": "assets/img/sponsors/toyota_trina.png",
             "link": "https://www.tri.global/",
         },
