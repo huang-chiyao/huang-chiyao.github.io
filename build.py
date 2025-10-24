@@ -309,6 +309,54 @@ def get_products_html():
     return s
 
 
+def get_sponsors_html():
+    sponsors = [
+        {
+            "name": "ASU Ira A. Fulton Schools of Engineering Fellowship",
+            "short": "ASU Fulton Fellowship",
+            "logo": "assets/img/sponsors/asu_fulton.png",   # add this image
+            "link": "https://engineering.asu.edu/",
+        },
+        {
+            "name": "Toyota Research Institute of North America (TRINA)",
+            "short": "Toyota TRINA",
+            "logo": "assets/img/sponsors/toyota_trina.png", # add this image
+            "link": "https://www.tri.global/",
+        },
+    ]
+
+    # Acknowledgment line
+    s = """
+<div style="margin-bottom: 1.5em;">
+  <p class="mb-3">
+    This work is supported by the <strong>ASU Ira A. Fulton Schools of Engineering Fellowship</strong>
+    and <strong>Toyota Research Institute of North America (TRINA)</strong>.
+  </p>
+  <div class="row text-center align-items-center">
+"""
+
+    # Logos (side-by-side, responsive)
+    for sp in sponsors:
+        logo = sp["logo"]
+        name = sp["name"]
+        link = sp.get("link", "")
+        card = f'''
+    <div class="col-6 col-md-4 col-lg-3 mb-3 d-flex flex-column align-items-center">
+      <a href="{link}" target="_blank" rel="noopener" aria-label="{name}">
+        <img src="{logo}" class="img-fluid" alt="{name} logo"
+             style="max-height:60px; object-fit:contain;">
+      </a>
+      <div class="mt-2" style="font-size:0.95rem;">{sp["short"]}</div>
+    </div>
+'''
+        s += card
+
+    s += """
+  </div>
+</div>
+"""
+    return s
+
 
 def get_talks_html():
     parser = bibtex.Parser()
@@ -319,10 +367,12 @@ def get_talks_html():
         s+= get_talk_entry(k, bib_data.entries[k])
     return s
 
+
 def get_index_html():
     pub = get_publications_html()
     # talks = get_talks_html()
     products = get_products_html()
+    sponsors = get_sponsors_html()
     name, bio_text, footer = get_personal_data()
     
     s = f"""
@@ -369,6 +419,13 @@ def get_index_html():
             <div class="col-sm-12" style="">
                 <h4>Products</h4>
                 {products}
+            </div>
+        </div>
+
+        <div class="row" style="margin-top: 3em;">
+            <div class="col-sm-12" style="">
+                <h4>Sponsors &amp; Funding</h4>
+                {sponsors}
             </div>
         </div>
 
