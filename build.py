@@ -328,7 +328,7 @@ def get_sponsors_html():
     s = """
 <div style="margin-bottom: 1.5em;">
   <p class="mb-3">
-    This work is supported by the <strong>ASU Ira A. Fulton Schools of Engineering Fellowship</strong>
+    Chi-Yao is supported by the <strong>ASU Ira A. Fulton Schools of Engineering Fellowship</strong>
     and <strong>Toyota Research Institute of North America (TRINA)</strong>.
   </p>
   <div class="row text-center align-items-center justify-content-center">
