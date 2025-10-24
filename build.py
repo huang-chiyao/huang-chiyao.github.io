@@ -68,7 +68,7 @@ def get_personal_data():
         </p>
 
         <p>
-            My research focuses on developing "latent-centric" solutions for visual odometry, SLAM, and spatial intelligence.
+            My research focuses on developing <b>latent-centric</b> solutions for visual odometry, SLAM, and spatial intelligence.
         </p>
 
         <p>
@@ -224,13 +224,23 @@ def get_products_html():
             "img": "assets/img/vive_focus3.jpg",
             "video": "https://www.youtube.com/watch?v=xYEVcptQ33E",
             "desc": "Enterprise-grade mixed reality headset with high-resolution displays and ergonomic comfort.",
+            "contrib": [
+                "Developed the visual–inertial SLAM system for inside-out tracking.",
+                "Designed multiple-camera motion estimation and sensor fusion algorithms.",
+                "Collaborated with UX teams to optimize tracking for dynamic environments."
+            ],
             "link": "https://www.vive.com/us/product/vive-focus3/overview/",
         },
         {
             "name": "VIVE XR Elite",
             "img": "assets/img/vive_xr_elite.jpg",
-            "video": "https://www.youtube.com/watch?v=DKs5ncz4JlE&t=1s",
+            "video": "https://www.youtube.com/watch?v=DKs5ncz4JlE",
             "desc": "Lightweight, modular XR headset built for immersive mixed reality experiences.",
+            "contrib": [
+                "Implemented visual–inertial odometry algorithms optimized for low-latency XR.",
+                "Designed and prototyped the core data structures and processing pipeline for a mixed-reality system.",
+                "Engineered an obstacle avoidance system to enhance user safety in mixed-reality environments."
+            ],
             "link": "https://www.vive.com/us/product/vive-xr-elite/overview/",
         },
         {
@@ -238,6 +248,11 @@ def get_products_html():
             "img": "assets/img/vive_flow.jpg",
             "video": "https://www.youtube.com/watch?v=xzbRqENGjS0",
             "desc": "Compact, glasses-style VR headset designed for wellness, streaming, and portability.",
+            "contrib": [
+                "Designed the inside-out tracking algorithm for limited-FoV sensors.",
+                "Developed a prototype motion tracking pipeline integrating a real-time hand-tracking system.",
+                "Collaborated with optics and gaming teams to tune and optimize on-device performance."
+            ],
             "link": "https://www.vive.com/us/product/vive-flow/overview/",
         },
     ]
@@ -251,14 +266,14 @@ def get_products_html():
         s += f"""<div style="margin-bottom: 3em;">
 <div class="row">
 
-  <!-- Left side: image + video side-by-side (wider column) -->
+  <!-- Left side: image + video -->
   <div class="col-sm-6">
     <div class="row no-gutters align-items-center">
       <div class="col-5 pr-1">
         <img src="{img_src}" class="img-fluid img-thumbnail" alt="{product['name']} image" style="max-width:100%;">
       </div>
 """
-        # Video section
+        # Video
         if video_url:
             s += f"""
       <div class="col-7 pl-1 d-flex justify-content-center align-items-center">
@@ -268,7 +283,7 @@ def get_products_html():
         else:
             s += """<div class="col-7"></div>"""
 
-        # Right side text
+        # Right side: text + contributions
         s += f"""
     </div>
   </div>
@@ -277,12 +292,22 @@ def get_products_html():
   <div class="col-sm-6">
     <h5><a href="{product['link']}" target="_blank">{product['name']}</a></h5>
     <p>{product['desc']}</p>
+"""
+        # Contributions list
+        if "contrib" in product and product["contrib"]:
+            s += "<ul style='margin-top:-0.5em; margin-bottom:0.5em;'>"
+            for item in product["contrib"]:
+                s += f"<li>{item}</li>"
+            s += "</ul>"
+
+        s += """
   </div>
 </div>
 </div>
 """
 
     return s
+
 
 
 def get_talks_html():
