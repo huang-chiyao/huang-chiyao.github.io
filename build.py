@@ -68,7 +68,7 @@ def get_personal_data():
         </p>
 
         <p>
-            My research focuses on developing <b>latent-centric</b> solutions for visual odometry, SLAM, and spatial intelligence.
+            My research aims to develop a foundation model for spatial intelligence. I am focused on creating a latent-centric framework that unifies 3D geometry, semantics, and temporal dynamics, bridging the gap between classical VO/SLAM and the generative, queryable capabilities of modern large-scale models.
         </p>
 
         <p>
@@ -290,7 +290,7 @@ def get_products_html():
 
   <!-- Right side: text -->
   <div class="col-sm-6">
-    <h5><a href="{product['link']}" target="_blank">{product['name']}</a></h5>
+    <a href="{product['link']}" target="_blank">{product['name']}</a> <br>
     <p>{product['desc']}</p>
 """
         # Contributions list
@@ -321,7 +321,7 @@ def get_talks_html():
 
 def get_index_html():
     pub = get_publications_html()
-    talks = get_talks_html()
+    # talks = get_talks_html()
     products = get_products_html()
     name, bio_text, footer = get_personal_data()
     
@@ -372,12 +372,7 @@ def get_index_html():
             </div>
         </div>
 
-        <div class="row" style="margin-top: 3em;">
-            <div class="col-sm-12" style="">
-                <h4>Talks</h4>
-                {talks}
-            </div>
-        </div>
+
         <div class="row" style="margin-top: 3em; margin-bottom: 1em;">
             {footer}
         </div>
