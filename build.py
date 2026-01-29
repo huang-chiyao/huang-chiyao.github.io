@@ -104,6 +104,9 @@ def get_author_dict():
     return {
         'Yezhou Yang': 'https://yezhouyang.engineering.asu.edu/',
         'Zeel Bhatt': 'https://zeelbhatt.github.io/',
+        'Khoa Vo': 'https://github.com/Chickeninvader',
+        'Aayush Verma': 'https://aayush-v.github.io/',
+        'Duo Lu': 'https://duolu.github.io/'
         }
 
 def generate_person_html(persons, connection=", ", make_bold=True, make_bold_name='Chi-Yao Huang', add_links=True):
