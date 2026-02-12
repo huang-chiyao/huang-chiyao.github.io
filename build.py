@@ -63,12 +63,12 @@ def get_personal_data():
             <a href="https://yezhouyang.engineering.asu.edu/" target="_blank"> Yezhou Yang</a> 
             at the School of Computing and Augmented Intelligence (SCAI), Arizona State University.
             Prior to joining ASU, I served as a pioneering VR/AR engineer at 
-            <a href="https://www.vive.com/us/" target="_blank">VIVE</a> (now part of Google), where I developed innovative tracking technologies that power nearly all VIVE products.
+            <a href="https://www.vive.com/us/" target="_blank">VIVE</a> (now part of Google), where I developed innovative VO/SLAM technologies that power nearly all VIVE products.
             I also hold a master's degree in Mechanical Engineering from National Taiwan University.
         </p>
 
         <p>
-            My research aims to develop a foundation model for spatial intelligence. I am focused on creating a <b>latent-centric</b> framework that unifies 3D geometry, semantics, and temporal dynamics, bridging the gap between classical VO/SLAM and the generative, queryable capabilities of modern large-scale models.
+            My research focuses on creating a <b>latent-centric</b> framework that unifies 3D geometry, semantics, and generative modeling, bridging the gap between the real world and AI.
         </p>
 
         <p>
