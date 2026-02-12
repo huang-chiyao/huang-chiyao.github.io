@@ -178,16 +178,22 @@ def get_paper_entry(entry_key, entry):
                 s += ' / '
             s += f"""<a href="{entry.fields[k]}" target="_blank">{v}</a>"""
             i += 1
-        # Removed the print warning to reduce noise if fields are optional
-        # else:
-        #    print(f'[{entry_key}] Warning: Field {k} missing!')
 
+    # Add BibTeX button as part of the same line
+    if i > 0:
+        s += ' / '
+    
+    # We use a <span> or just keep it inline to ensure it doesn't break the line
+    s += f"""<button class="btn btn-link p-0" type="button" data-toggle="collapse" data-target="#collapse{entry_key}" aria-expanded="false" aria-controls="collapse{entry_key}" style="vertical-align: baseline;">expand bibtex</button>"""
+
+    # BibTeX Content (The hidden part)
     cite = "<pre><code>@InProceedings{" + f"{entry_key}, \n"
     cite += "\tauthor = {" + f"{generate_person_html(entry.persons['author'], make_bold=False, add_links=False, connection=' and ')}" + "}, \n"
     for entr in ['title', 'booktitle', 'year']:
         cite += f"\t{entr} = " + "{" + f"{entry.fields[entr]}" + "}, \n"
     cite += """}</pre></code>"""
-    s += " /" + f"""<button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse{entry_key}" aria-expanded="false" aria-controls="collapseExample" style="margin-left: -6px; margin-top: -2px;">expand bibtex</button><div class="collapse" id="collapse{entry_key}"><div class="card card-body">{cite}</div></div>"""
+    
+    s += f"""<div class="collapse" id="collapse{entry_key}"><div class="card card-body">{cite}</div></div>"""
     s += """ </div> </div> </div>"""
     return s
 
