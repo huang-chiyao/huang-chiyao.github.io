@@ -130,25 +130,26 @@ def generate_person_html(persons, connection=", ", make_bold=True, make_bold_nam
 def get_paper_entry(entry_key, entry):
     # safe fallbacks
     img_src = entry.fields.get('img', 'assets/img/default_project.jpg')
+    
+    # Logic: Prioritize 'demo' over 'video' for the visual display
     video_url = entry.fields.get('video', '').strip()
+    demo_url = entry.fields.get('demo', '').strip()
+    display_url = demo_url if demo_url else video_url
 
     # Begin entry block
     s = """<div style="margin-bottom: 3em;">
     <div class="row">
 
-    <!-- Left side: image + video side-by-side (wider column) -->
-    <div class="col-sm-6">   <!-- increased from col-sm-4 -->
-        <div class="row no-gutters align-items-center">
-        <div class="col-5 pr-1">   <!-- image smaller -->
-            <img src="{img_src}" class="img-fluid img-thumbnail" alt="Project image" style="max-width:100%;">
+    <div class="col-sm-6">   <div class="row no-gutters align-items-center">
+        <div class="col-5 pr-1">   <img src="{img_src}" class="img-fluid img-thumbnail" alt="Project image" style="max-width:100%;">
         </div>
     """.replace("{img_src}", img_src)
 
-    # video part (same as before)
-    if video_url:
+    # Render the chosen URL (demo or video)
+    if display_url:
         s += f"""
         <div class="col-7 pl-1 d-flex justify-content-center align-items-center">
-            {render_video(video_url).replace('embed-responsive-16by9', 'embed-responsive-4by3').replace('my-2', 'my-0')}
+            {render_video(display_url).replace('embed-responsive-16by9', 'embed-responsive-4by3').replace('my-2', 'my-0')}
         </div>
         """
     else:
@@ -158,9 +159,7 @@ def get_paper_entry(entry_key, entry):
         </div>
     </div>
 
-    <!-- Right side: text -->
-    <div class="col-sm-6">   <!-- decreased from col-sm-8 -->
-    """
+    <div class="col-sm-6">   """
 
     if 'award' in entry.fields.keys():
         s += f"""<a href="{entry.fields['html']}" target="_blank">{entry.fields['title']}</a> <span style="color: red;">({entry.fields['award']})</span><br>"""
@@ -170,7 +169,7 @@ def get_paper_entry(entry_key, entry):
     s += f"""{generate_person_html(entry.persons['author'])} <br>"""
     s += f"""<span style="font-style: italic;">{entry.fields['booktitle']}</span>, {entry.fields['year']} <br>"""
 
-    artefacts = {'html': 'Project Page', 'pdf': 'Paper', 'supp': 'Supplemental', 'video': 'Video', 'poster': 'Poster', 'code': 'Code'}
+    artefacts = {'html': 'project page', 'pdf': 'paper', 'supp': 'supplemental', 'video': 'video', 'poster': 'poster', 'code': 'code', 'demo': 'demo'}
 
     i = 0
     for (k, v) in artefacts.items():
@@ -179,15 +178,16 @@ def get_paper_entry(entry_key, entry):
                 s += ' / '
             s += f"""<a href="{entry.fields[k]}" target="_blank">{v}</a>"""
             i += 1
-        else:
-            print(f'[{entry_key}] Warning: Field {k} missing!')
+        # Removed the print warning to reduce noise if fields are optional
+        # else:
+        #    print(f'[{entry_key}] Warning: Field {k} missing!')
 
     cite = "<pre><code>@InProceedings{" + f"{entry_key}, \n"
     cite += "\tauthor = {" + f"{generate_person_html(entry.persons['author'], make_bold=False, add_links=False, connection=' and ')}" + "}, \n"
     for entr in ['title', 'booktitle', 'year']:
         cite += f"\t{entr} = " + "{" + f"{entry.fields[entr]}" + "}, \n"
     cite += """}</pre></code>"""
-    s += " /" + f"""<button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse{entry_key}" aria-expanded="false" aria-controls="collapseExample" style="margin-left: -6px; margin-top: -2px;">Expand bibtex</button><div class="collapse" id="collapse{entry_key}"><div class="card card-body">{cite}</div></div>"""
+    s += " /" + f"""<button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse{entry_key}" aria-expanded="false" aria-controls="collapseExample" style="margin-left: -6px; margin-top: -2px;">expand bibtex</button><div class="collapse" id="collapse{entry_key}"><div class="card card-body">{cite}</div></div>"""
     s += """ </div> </div> </div>"""
     return s
 
