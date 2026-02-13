@@ -129,7 +129,7 @@ def generate_person_html(persons, connection=", ", make_bold=True, make_bold_nam
 
 def get_paper_entry(entry_key, entry):
     # safe fallbacks
-    img_src = entry.fields.get('img', 'assets/img/default_project.jpg')
+    img_src = entry.fields.get('img', 'assets/img/coming_soon.jpg')
     
     # Logic: Prioritize 'demo' over 'video' for the visual display
     video_url = entry.fields.get('video', '').strip()
