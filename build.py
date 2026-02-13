@@ -324,13 +324,13 @@ def get_sponsors_html():
     sponsors = [
         {
             "name": "ASU Ira A. Fulton Schools of Engineering Fellowship",
-            "short": "ASU Fulton Fellowship",
+            "short": "",
             "logo": "assets/img/sponsors/asu_fulton.png",
             "link": "https://engineering.asu.edu/",
         },
         {
             "name": "Toyota Research Institute of North America (TRINA)",
-            "short": "TRINA",
+            "short": "",
             "logo": "assets/img/sponsors/toyota_trina.png",
             "link": "https://www.tri.global/",
         },
