@@ -137,28 +137,26 @@ def get_paper_entry(entry_key, entry):
     display_url = demo_url if demo_url else video_url
 
     # Begin entry block
-    # CHANGE 1: Use col-6 for both image and video slots so they are equal width
+    # Use col-6 for equal width columns
     s = """<div style="margin-bottom: 3em;">
     <div class="row">
 
     <div class="col-sm-6">   <div class="row no-gutters align-items-center">
         <div class="col-6 pr-1">
             <div class="embed-responsive embed-responsive-4by3">
-                <img src="{img_src}" class="embed-responsive-item img-thumbnail" alt="Project image" style="object-fit: cover;">
+                <img src="{img_src}" class="embed-responsive-item img-thumbnail" alt="Project image" style="object-fit: contain; background-color: #fff;">
             </div>
         </div>
     """.replace("{img_src}", img_src)
 
     # Render the chosen URL (demo or video)
     if display_url:
-        # CHANGE 2: Use col-6 here (instead of col-7)
         s += f"""
         <div class="col-6 pl-1 d-flex justify-content-center align-items-center">
             {render_video(display_url).replace('embed-responsive-16by9', 'embed-responsive-4by3').replace('my-2', 'my-0')}
         </div>
         """
     else:
-        # Keep layout consistent even if no video
         s += """<div class="col-6"></div>"""
 
     s += """
@@ -185,14 +183,11 @@ def get_paper_entry(entry_key, entry):
             s += f"""<a href="{entry.fields[k]}" target="_blank">{v}</a>"""
             i += 1
 
-    # Add BibTeX button as part of the same line
     if i > 0:
         s += ' / '
     
-    # We use a <span> or just keep it inline to ensure it doesn't break the line
     s += f"""<button class="btn btn-link p-0" type="button" data-toggle="collapse" data-target="#collapse{entry_key}" aria-expanded="false" aria-controls="collapse{entry_key}" style="vertical-align: baseline;">expand bibtex</button>"""
 
-    # BibTeX Content (The hidden part)
     cite = "<pre><code>@InProceedings{" + f"{entry_key}, \n"
     cite += "\tauthor = {" + f"{generate_person_html(entry.persons['author'], make_bold=False, add_links=False, connection=' and ')}" + "}, \n"
     for entr in ['title', 'booktitle', 'year']:
@@ -278,8 +273,6 @@ def get_products_html():
         img_src = product.get("img", "assets/img/default_project.jpg")
         video_url = product.get("video", "").strip()
 
-        # Same layout as publications
-        # CHANGE 1: Use col-6 and embed-responsive for image
         s += f"""<div style="margin-bottom: 3em;">
 <div class="row">
 
@@ -287,13 +280,11 @@ def get_products_html():
     <div class="row no-gutters align-items-center">
       <div class="col-6 pr-1">
         <div class="embed-responsive embed-responsive-4by3">
-             <img src="{img_src}" class="embed-responsive-item img-thumbnail" alt="{product['name']} image" style="object-fit: cover;">
+             <img src="{img_src}" class="embed-responsive-item img-thumbnail" alt="{product['name']} image" style="object-fit: contain; background-color: #fff;">
         </div>
       </div>
 """
-        # Video
         if video_url:
-            # CHANGE 2: Use col-6 for video
             s += f"""
       <div class="col-6 pl-1 d-flex justify-content-center align-items-center">
         {render_video(video_url).replace('embed-responsive-16by9', 'embed-responsive-4by3').replace('my-2', 'my-0')}
@@ -302,7 +293,6 @@ def get_products_html():
         else:
             s += """<div class="col-6"></div>"""
 
-        # Right side: text + contributions
         s += f"""
     </div>
   </div>
@@ -311,7 +301,6 @@ def get_products_html():
     <a href="{product['link']}" target="_blank">{product['name']}</a> <br>
     <p>{product['desc']}</p>
 """
-        # Contributions list
         if "contrib" in product and product["contrib"]:
             s += "<ul style='margin-top:-0.5em; margin-bottom:0.5em;'>"
             for item in product["contrib"]:
@@ -323,7 +312,6 @@ def get_products_html():
 </div>
 </div>
 """
-
     return s
 
 def get_sponsors_html():
