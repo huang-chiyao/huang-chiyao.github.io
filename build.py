@@ -129,7 +129,7 @@ def generate_person_html(persons, connection=", ", make_bold=True, make_bold_nam
 
 def get_paper_entry(entry_key, entry):
     # safe fallbacks
-    img_src = entry.fields.get('img', 'assets/img/coming_soon.jpg')
+    img_src = entry.fields.get('img', 'assets/img/default_project.jpg')
     
     # Logic: Prioritize 'demo' over 'video' for the visual display
     video_url = entry.fields.get('video', '').strip()
@@ -137,7 +137,6 @@ def get_paper_entry(entry_key, entry):
     display_url = demo_url if demo_url else video_url
 
     # Begin entry block
-    # Use col-6 for equal width columns
     s = """<div style="margin-bottom: 3em;">
     <div class="row">
 
@@ -149,7 +148,7 @@ def get_paper_entry(entry_key, entry):
         </div>
     """.replace("{img_src}", img_src)
 
-    # Render the chosen URL (demo or video)
+    # Render the chosen URL (demo or video), OR show 'Coming Soon' image
     if display_url:
         s += f"""
         <div class="col-6 pl-1 d-flex justify-content-center align-items-center">
@@ -157,7 +156,14 @@ def get_paper_entry(entry_key, entry):
         </div>
         """
     else:
-        s += """<div class="col-6"></div>"""
+        # CHANGE: Show 'coming_soon.jpg' instead of empty space
+        s += """
+        <div class="col-6 pl-1">
+            <div class="embed-responsive embed-responsive-4by3">
+                <img src="assets/img/coming_soon.jpg" class="embed-responsive-item img-thumbnail" alt="Video coming soon" style="object-fit: contain; background-color: #fff;">
+            </div>
+        </div>
+        """
 
     s += """
         </div>
