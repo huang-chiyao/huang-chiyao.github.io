@@ -137,23 +137,29 @@ def get_paper_entry(entry_key, entry):
     display_url = demo_url if demo_url else video_url
 
     # Begin entry block
+    # CHANGE 1: Use col-6 for both image and video slots so they are equal width
     s = """<div style="margin-bottom: 3em;">
     <div class="row">
 
     <div class="col-sm-6">   <div class="row no-gutters align-items-center">
-        <div class="col-5 pr-1">   <img src="{img_src}" class="img-fluid img-thumbnail" alt="Project image" style="max-width:100%;">
+        <div class="col-6 pr-1">
+            <div class="embed-responsive embed-responsive-4by3">
+                <img src="{img_src}" class="embed-responsive-item img-thumbnail" alt="Project image" style="object-fit: cover;">
+            </div>
         </div>
     """.replace("{img_src}", img_src)
 
     # Render the chosen URL (demo or video)
     if display_url:
+        # CHANGE 2: Use col-6 here (instead of col-7)
         s += f"""
-        <div class="col-7 pl-1 d-flex justify-content-center align-items-center">
+        <div class="col-6 pl-1 d-flex justify-content-center align-items-center">
             {render_video(display_url).replace('embed-responsive-16by9', 'embed-responsive-4by3').replace('my-2', 'my-0')}
         </div>
         """
     else:
-        s += """<div class="col-7"></div>"""
+        # Keep layout consistent even if no video
+        s += """<div class="col-6"></div>"""
 
     s += """
         </div>
@@ -196,6 +202,7 @@ def get_paper_entry(entry_key, entry):
     s += f"""<div class="collapse" id="collapse{entry_key}"><div class="card card-body">{cite}</div></div>"""
     s += """ </div> </div> </div>"""
     return s
+
 
 def get_talk_entry(entry_key, entry):
     s = """<div style="margin-bottom: 3em;"> <div class="row"><div class="col-sm-3">"""
@@ -272,32 +279,34 @@ def get_products_html():
         video_url = product.get("video", "").strip()
 
         # Same layout as publications
+        # CHANGE 1: Use col-6 and embed-responsive for image
         s += f"""<div style="margin-bottom: 3em;">
 <div class="row">
 
-  <!-- Left side: image + video -->
   <div class="col-sm-6">
     <div class="row no-gutters align-items-center">
-      <div class="col-5 pr-1">
-        <img src="{img_src}" class="img-fluid img-thumbnail" alt="{product['name']} image" style="max-width:100%;">
+      <div class="col-6 pr-1">
+        <div class="embed-responsive embed-responsive-4by3">
+             <img src="{img_src}" class="embed-responsive-item img-thumbnail" alt="{product['name']} image" style="object-fit: cover;">
+        </div>
       </div>
 """
         # Video
         if video_url:
+            # CHANGE 2: Use col-6 for video
             s += f"""
-      <div class="col-7 pl-1 d-flex justify-content-center align-items-center">
+      <div class="col-6 pl-1 d-flex justify-content-center align-items-center">
         {render_video(video_url).replace('embed-responsive-16by9', 'embed-responsive-4by3').replace('my-2', 'my-0')}
       </div>
 """
         else:
-            s += """<div class="col-7"></div>"""
+            s += """<div class="col-6"></div>"""
 
         # Right side: text + contributions
         s += f"""
     </div>
   </div>
 
-  <!-- Right side: text -->
   <div class="col-sm-6">
     <a href="{product['link']}" target="_blank">{product['name']}</a> <br>
     <p>{product['desc']}</p>
@@ -316,7 +325,6 @@ def get_products_html():
 """
 
     return s
-
 
 def get_sponsors_html():
     sponsors = [
