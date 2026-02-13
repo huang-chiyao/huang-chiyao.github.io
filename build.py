@@ -108,7 +108,7 @@ def get_author_dict():
         'Zeel Bhatt': 'https://zeelbhatt.github.io/',
         'Khoa Vo': 'https://github.com/Chickeninvader',
         'Aayush Verma': 'https://aayush-v.github.io/',
-        'Duo Lu': 'https://duolu.github.io/'
+        'Duo Lu': 'https://www.rider.edu/about/faculty-staff-directory/duo-lu'
         }
 
 def generate_person_html(persons, connection=", ", make_bold=True, make_bold_name='Chi-Yao Huang', add_links=True):
