@@ -55,10 +55,12 @@ def get_personal_data():
     twitter = ""
     github = "huang-chiyao"
     linkedin = "chi-yao-huang"
+    
+    # Added style="text-align: justify;" to the text paragraphs
     bio_text = f"""
-        <p>Hello and welcome to my place. I'm Chi-Yao Huang (黃祺堯).</p>
+        <p style="text-align: justify;">Hello and welcome to my place. I'm Chi-Yao Huang (黃啟堯).</p>
 
-        <p>
+        <p style="text-align: justify;">
             I am currently pursuing my Ph.D. under the guidance of Professor
             <a href="https://yezhouyang.engineering.asu.edu/" target="_blank"> Yezhou Yang</a> 
             at the School of Computing and Augmented Intelligence (SCAI), Arizona State University.
@@ -67,7 +69,7 @@ def get_personal_data():
             I also hold a master's degree in Mechanical Engineering from National Taiwan University.
         </p>
 
-        <p>
+        <p style="text-align: justify;">
             My research focuses on creating a <b>latent-centric</b> framework that unifies 3D geometry, semantics, and generative modeling, bridging the gap between the real world and AI.
         </p>
 
