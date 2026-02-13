@@ -58,7 +58,7 @@ def get_personal_data():
     
     # Added style="text-align: justify;" to the text paragraphs
     bio_text = f"""
-        <p style="text-align: justify;">Hello and welcome to my place. I'm Chi-Yao Huang (黃啟堯).</p>
+        <p style="text-align: justify;">Hello and welcome to my place. I'm Chi-Yao Huang (黃祺堯).</p>
 
         <p style="text-align: justify;">
             I am currently pursuing my Ph.D. under the guidance of Professor
