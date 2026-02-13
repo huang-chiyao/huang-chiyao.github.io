@@ -56,7 +56,7 @@ def get_personal_data():
     github = "huang-chiyao"
     linkedin = "chi-yao-huang"
     bio_text = f"""
-        <p>Hello and welcome to my place. I'm Chi-Yao Huang.</p>
+        <p>Hello and welcome to my place. I'm Chi-Yao Huang (黃祺堯).</p>
 
         <p>
             I am currently pursuing my Ph.D. under the guidance of Professor
