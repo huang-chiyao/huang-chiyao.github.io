@@ -239,6 +239,17 @@ def get_publications_html():
 def get_products_html():
     products = [
         {
+            "name": "VIVE COSMOS",
+            "img": "assets/img/vive_cosmos.jpg",
+            "video": "https://youtu.be/kbGO0GxRM3w",
+            "desc": "VIVE COSMOS is the prototype of all VR, AR, and XR products in VIVE.",
+            "contrib": [
+                "Developed the visual–inertial SLAM system for VR tracking.",
+                "Designed multiple-camera motion estimation and sensor fusion algorithms.",
+            ],
+            "link": "https://www.vive.com/sea/product/vive-cosmos/features/",
+        },
+        {
             "name": "VIVE Focus 3",
             "img": "assets/img/vive_focus3.jpg",
             "video": "https://www.youtube.com/watch?v=xYEVcptQ33E",
