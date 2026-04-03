@@ -339,7 +339,7 @@ def get_early_projects_html():
         {
             "name": "A* path planning with biped robot.",
             "img": "assets/img/ntu_nino.png",
-            "video": "",  # optional
+            "video": "https://youtu.be/vnyd5LGULpI",  # optional
             "desc": "A* path planning with biped robot.",
             "contrib": [
                 "Zero moment point motion planning for biped robot.",
