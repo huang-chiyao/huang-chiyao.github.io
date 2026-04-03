@@ -333,6 +333,75 @@ def get_products_html():
 """
     return s
 
+
+def get_early_projects_html():
+    early_projects = [
+        {
+            "name": "A* path planning with biped robot.",
+            "img": "assets/img/ntu_nino.png",
+            "video": "",  # optional
+            "desc": "A* path planning with biped robot.",
+            "contrib": [
+                "Zero moment point motion planning for biped robot.",
+                "A* obstacle avoidance."
+            ],
+            "link": "https://youtu.be/vnyd5LGULpI",
+        },
+    ]
+
+    s = ""
+    for project in early_projects:
+        img_src = project.get("img", "assets/img/default_project.jpg")
+        video_url = project.get("video", "").strip()
+
+        s += f"""<div style="margin-bottom: 3em;">
+<div class="row">
+
+  <div class="col-sm-6">
+    <div class="row no-gutters align-items-center">
+      <div class="col-6 pr-1">
+        <div class="embed-responsive embed-responsive-4by3">
+             <img src="{img_src}" class="embed-responsive-item img-thumbnail" alt="{project['name']} image" style="object-fit: contain; background-color: #fff;">
+        </div>
+      </div>
+"""
+        if video_url:
+            s += f"""
+      <div class="col-6 pl-1 d-flex justify-content-center align-items-center">
+        {render_video(video_url).replace('embed-responsive-16by9', 'embed-responsive-4by3').replace('my-2', 'my-0')}
+      </div>
+"""
+        else:
+            s += """
+      <div class="col-6 pl-1">
+        <div class="embed-responsive embed-responsive-4by3">
+          <img src="assets/img/coming_soon.jpg" class="embed-responsive-item img-thumbnail" alt="Video coming soon" style="object-fit: contain; background-color: #fff;">
+        </div>
+      </div>
+"""
+
+        s += f"""
+    </div>
+  </div>
+
+  <div class="col-sm-6">
+    <a href="{project['link']}" target="_blank">{project['name']}</a> <br>
+    <p>{project['desc']}</p>
+"""
+        if "contrib" in project and project["contrib"]:
+            s += "<ul style='margin-top:-0.5em; margin-bottom:0.5em;'>"
+            for item in project["contrib"]:
+                s += f"<li>{item}</li>"
+            s += "</ul>"
+
+        s += """
+  </div>
+</div>
+</div>
+"""
+    return s
+
+
 def get_sponsors_html():
     sponsors = [
         {
@@ -396,6 +465,7 @@ def get_index_html():
     pub = get_publications_html()
     # talks = get_talks_html()
     products = get_products_html()
+    early_projects = get_early_projects_html()
     sponsors = get_sponsors_html()
     name, bio_text, footer = get_personal_data()
     
@@ -447,6 +517,13 @@ def get_index_html():
             <div class="col-sm-12" style="">
                 <h4>Products</h4>
                 {products}
+            </div>
+        </div>
+
+        <div class="row" style="margin-top: 3em;">
+            <div class="col-sm-12" style="">
+                <h4>Early Projects</h4>
+                {early_projects}
             </div>
         </div>
 
