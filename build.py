@@ -337,6 +337,16 @@ def get_products_html():
 def get_early_projects_html():
     early_projects = [
         {
+            "name": "Toyota Mothership",
+            "img": "assets/img/toyota_mothership.png",
+            "video": "https://youtu.be/a0ssZYkKJ98",  # optional
+            "desc": "High-altitude pose estimation for aerial robots using IR and IMU sensors under varying weather conditions.",
+            "contrib": [
+                "Sponsored by TRINA."
+            ],
+            "link": "https://youtu.be/a0ssZYkKJ98",
+        },
+        {
             "name": "Object-Oriented SLAM (OOI-SLAM)",
             "img": "assets/img/OOI-SLAM.png",
             "video": "https://www.youtube.com/watch?v=_sUGpKUYML0",  # optional
