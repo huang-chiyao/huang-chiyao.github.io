@@ -337,13 +337,25 @@ def get_products_html():
 def get_early_projects_html():
     early_projects = [
         {
-            "name": "A* path planning with biped robot.",
+            "name": "Object-Oriented SLAM (OOI-SLAM)",
+            "img": "assets/img/OOI-SLAM.png",
+            "video": "https://www.youtube.com/watch?v=_sUGpKUYML0",  # optional
+            "desc": "Simultaneous localization and mapping with zero-shot 3D object reconstruction.",
+            "contrib": [
+                "Zero-shot 3D shape reconstruction from a single image.",
+                "Object recognition, tracking, and mapping.",
+                "Designed a new object-based error function for bundle adjustment."
+            ],
+            "link": "https://www.youtube.com/watch?v=_sUGpKUYML0",
+        },
+        {
+            "name": "A* Path Planning with a Biped Robot",
             "img": "assets/img/ntu_nino.png",
             "video": "https://youtu.be/vnyd5LGULpI",  # optional
-            "desc": "A* path planning with biped robot.",
+            "desc": "A* path planning for a biped robot.",
             "contrib": [
-                "Zero moment point motion planning for biped robot.",
-                "A* obstacle avoidance."
+                "Zero-moment-point motion planning for a biped robot.",
+                "A*-based obstacle avoidance."
             ],
             "link": "https://youtu.be/vnyd5LGULpI",
         },
