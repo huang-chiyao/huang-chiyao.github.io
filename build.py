@@ -334,12 +334,12 @@ def get_products_html():
     return s
 
 
-def get_early_projects_html():
-    early_projects = [
+def get_projects_html():
+    projects = [
         {
             "name": "Toyota Mothership",
             "img": "assets/img/toyota_mothership.png",
-            "video": "https://youtu.be/a0ssZYkKJ98",  # optional
+            "video": "https://youtu.be/a0ssZYkKJ98",
             "desc": "High-altitude pose estimation for aerial robots using IR and IMU sensors under varying weather conditions.",
             "contrib": [
                 "Sponsored by TRINA."
@@ -349,7 +349,7 @@ def get_early_projects_html():
         {
             "name": "Object-Oriented SLAM (OOI-SLAM)",
             "img": "assets/img/OOI-SLAM.png",
-            "video": "https://www.youtube.com/watch?v=_sUGpKUYML0",  # optional
+            "video": "https://www.youtube.com/watch?v=_sUGpKUYML0",
             "desc": "Simultaneous localization and mapping with zero-shot 3D object reconstruction.",
             "contrib": [
                 "Zero-shot 3D shape reconstruction from a single image.",
@@ -361,7 +361,7 @@ def get_early_projects_html():
         {
             "name": "A* Path Planning with a Biped Robot",
             "img": "assets/img/ntu_nino.png",
-            "video": "https://youtu.be/vnyd5LGULpI",  # optional
+            "video": "https://youtu.be/vnyd5LGULpI",
             "desc": "A* path planning for a biped robot.",
             "contrib": [
                 "Zero-moment-point motion planning for a biped robot.",
@@ -372,7 +372,7 @@ def get_early_projects_html():
     ]
 
     s = ""
-    for project in early_projects:
+    for project in projects:
         img_src = project.get("img", "assets/img/default_project.jpg")
         video_url = project.get("video", "").strip()
 
@@ -422,7 +422,6 @@ def get_early_projects_html():
 </div>
 """
     return s
-
 
 def get_sponsors_html():
     sponsors = [
@@ -487,7 +486,7 @@ def get_index_html():
     pub = get_publications_html()
     # talks = get_talks_html()
     products = get_products_html()
-    early_projects = get_early_projects_html()
+    projects = get_projects_html()
     sponsors = get_sponsors_html()
     name, bio_text, footer = get_personal_data()
     
@@ -544,8 +543,8 @@ def get_index_html():
 
         <div class="row" style="margin-top: 3em;">
             <div class="col-sm-12" style="">
-                <h4>Early Projects</h4>
-                {early_projects}
+                <h4>Projects</h4>
+                {projects}
             </div>
         </div>
 
