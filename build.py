@@ -536,15 +536,15 @@ def get_index_html():
 
         <div class="row" style="margin-top: 3em;">
             <div class="col-sm-12" style="">
-                <h4>Products</h4>
-                {products}
+                <h4>Projects</h4>
+                {projects}
             </div>
         </div>
 
         <div class="row" style="margin-top: 3em;">
             <div class="col-sm-12" style="">
-                <h4>Projects</h4>
-                {projects}
+                <h4>Products</h4>
+                {products}
             </div>
         </div>
 
