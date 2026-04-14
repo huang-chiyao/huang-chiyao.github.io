@@ -70,7 +70,7 @@ def get_personal_data():
         </p>
 
         <p style="text-align: justify;">
-            My research focuses on creating a <b>latent-centric</b> framework that unifies 3D geometry, semantics, and generative modeling, bridging the gap between the real world and AI.
+            My research focuses on creating an interpretable and controllable <b>latent-centric</b> framework that unifies 3D geometry, semantics, and generative modeling, bridging the gap between the real world and AI.
         </p>
 
         <p>
