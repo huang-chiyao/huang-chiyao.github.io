@@ -342,7 +342,8 @@ def get_projects_html():
             "video": "https://youtu.be/a0ssZYkKJ98",
             "desc": "High-altitude pose estimation for aerial robots using IR and IMU sensors under varying weather conditions.",
             "contrib": [
-                "Sponsored by TRINA."
+                "Implemented latent-centric pose estimation for aerial robots.",
+                "Sponsored by Toyota Research Institute of North America."
             ],
             "link": "https://youtu.be/a0ssZYkKJ98",
         },
@@ -435,7 +436,7 @@ def get_sponsors_html():
             "name": "Toyota Research Institute of North America (TRINA)",
             "short": "",
             "logo": "assets/img/sponsors/toyota_trina.png",
-            "link": "https://www.tri.global/",
+            "link": "https://amrd.toyota.com/division/trina/",
         },
     ]
 
