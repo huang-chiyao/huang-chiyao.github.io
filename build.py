@@ -340,12 +340,11 @@ def get_projects_html():
             "name": "Toyota Mothership",
             "img": "assets/img/toyota_mothership.png",
             "video": "https://youtu.be/a0ssZYkKJ98",
-            "desc": "High-altitude pose estimation for aerial robots using IR and IMU sensors under varying weather conditions.",
+            "desc": "The Toyota Mothership project aims to develop a versatile, general-purpose aerial robot designed to assist with transportation, communication networks, and disaster prevention.",
             "contrib": [
-                "Implemented latent-centric pose estimation for aerial robots.",
-                "Sponsored by Toyota Research Institute of North America."
+                "Engineered a robust latent-centric pose estimation model for high-altitude aerial robots, leveraging IR and IMU sensor data to ensure reliability across diverse weather conditions."
             ],
-            "link": "https://youtu.be/a0ssZYkKJ98",
+            "link": "https://youtu.be/a0ssZYkKJ98"
         },
         {
             "name": "Object-Oriented SLAM (OOI-SLAM)",
