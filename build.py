@@ -1,7 +1,11 @@
 from pybtex.database.input import bibtex
 from urllib.parse import urlparse, parse_qs
+import re
 
 MEDIA_HEIGHT = 180  # put this near the top of your file (once)
+
+# Preferred/display name (short form)
+PREFERRED_NAME = "Trey"
 
 def render_video(url: str) -> str:
     url_lower = url.lower()
@@ -50,7 +54,7 @@ def render_video(url: str) -> str:
     return f'<a href="{url}" target="_blank">Video</a>'
 
 def get_personal_data():
-    name = ["Chi-Yao", "Huang"]
+    name = ["Chi-Yao (Trey)", "Huang"]
     email = "cy.huang@asu.edu"
     twitter = ""
     github = "huang-chiyao"
@@ -58,7 +62,7 @@ def get_personal_data():
     
     # Added style="text-align: justify;" to the text paragraphs
     bio_text = f"""
-        <p style="text-align: justify;">Hello and welcome to my place. I'm Chi-Yao Huang (黃祺堯).</p>
+        <p style="text-align: justify;">Hello and welcome to my place. I'm Chi-Yao (Trey) Huang (黃祺堯).</p>
 
         <p style="text-align: justify;">
             I am currently pursuing my Ph.D. under the guidance of Professor
@@ -122,8 +126,11 @@ def generate_person_html(persons, connection=", ", make_bold=True, make_bold_nam
             string_part_i += name_part_i
         if string_part_i in links.keys():
             string_part_i = f'<a href="{links[string_part_i]}" target="_blank">{string_part_i}</a>'
-        if make_bold and string_part_i == make_bold_name:
-            string_part_i = f'<span style="font-weight: bold";>{make_bold_name}</span>'
+        if make_bold:
+            # Normalize the name by removing parenthetical preferred names
+            norm = re.sub(r"\s*\(.*?\)\s*", " ", string_part_i).strip()
+            if norm == make_bold_name:
+                string_part_i = f'<span style="font-weight: bold";>{string_part_i}</span>'
         if p != persons[-1]:
             string_part_i += connection
         s += string_part_i
