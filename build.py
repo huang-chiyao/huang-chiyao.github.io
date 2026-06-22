@@ -74,7 +74,7 @@ def get_personal_data():
         </p>
 
         <p style="text-align: justify;">
-            My research focuses on interpretable and controllable latent-space learning for embodied AI, connecting spatial perception, semantic understanding, and reasoning through structured visual representations.
+            My research focuses on interpretable and controllable latent-space learning for embodied AI and world models.
         </p>
 
         <p>
