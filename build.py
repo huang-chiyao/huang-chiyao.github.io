@@ -180,36 +180,54 @@ def get_paper_entry(entry_key, entry):
 
     <div class="col-sm-6">   """
 
-    if 'award' in entry.fields.keys():
-        s += f"""<a href="{entry.fields['html']}" target="_blank">{entry.fields['title']}</a> <span style="color: red;">({entry.fields['award']})</span><br>"""
+    html_url = entry.fields.get('html', '').strip()
+    if html_url and 'award' in entry.fields.keys():
+        s += f"""<a href="{html_url}" target="_blank">{entry.fields['title']}</a> <span style="color: red;">({entry.fields['award']})</span><br>"""
+    elif html_url:
+        s += f"""<a href="{html_url}" target="_blank">{entry.fields['title']}</a> <br>"""
+    elif 'award' in entry.fields.keys():
+        s += f"""{entry.fields['title']} <span style="color: red;">({entry.fields['award']})</span><br>"""
     else:
-        s += f"""<a href="{entry.fields['html']}" target="_blank">{entry.fields['title']}</a> <br>"""
+        s += f"""{entry.fields['title']}<br>"""
 
-    s += f"""{generate_person_html(entry.persons['author'])} <br>"""
-    s += f"""<span style="font-style: italic;">{entry.fields['booktitle']}</span>, {entry.fields['year']} <br>"""
+    if 'author' in entry.persons:
+        s += f"""{generate_person_html(entry.persons['author'])} <br>"""
+
+    if 'status' in entry.fields:
+        s += f"""<span style="font-style: italic;">{entry.fields['status']}</span><br>"""
+    else:
+        s += f"""<span style="font-style: italic;">{entry.fields['booktitle']}</span>, {entry.fields['year']} <br>"""
+
+    if 'description' in entry.fields:
+        s += f"""<p style="margin: 0.4em 0;">{entry.fields['description']}</p>"""
 
     artefacts = {'html': 'project page', 'pdf': 'paper', 'supp': 'supplemental', 'video': 'video', 'poster': 'poster', 'code': 'code', 'demo': 'demo'}
 
-    i = 0
+    artefact_links = []
     for (k, v) in artefacts.items():
         if k in entry.fields.keys():
-            if i > 0:
-                s += ' / '
-            s += f"""<a href="{entry.fields[k]}" target="_blank">{v}</a>"""
-            i += 1
+            artefact_links.append(f"""<a href="{entry.fields[k]}" target="_blank">{v}</a>""")
 
-    if i > 0:
-        s += ' / '
-    
-    s += f"""<button class="btn btn-link p-0" type="button" data-toggle="collapse" data-target="#collapse{entry_key}" aria-expanded="false" aria-controls="collapse{entry_key}" style="vertical-align: baseline;">expand bibtex</button>"""
+    if 'comingsoon' in entry.fields:
+        artefact_links.append(f"""<span style="font-style: italic;">{entry.fields['comingsoon']}</span>""")
 
-    cite = "<pre><code>@InProceedings{" + f"{entry_key}, \n"
-    cite += "\tauthor = {" + f"{generate_person_html(entry.persons['author'], make_bold=False, add_links=False, connection=' and ')}" + "}, \n"
-    for entr in ['title', 'booktitle', 'year']:
-        cite += f"\t{entr} = " + "{" + f"{entry.fields[entr]}" + "}, \n"
+    hide_bibtex = entry.fields.get('hidebibtex', '').strip().lower() == 'true'
+    if not hide_bibtex:
+        artefact_links.append(f"""<button class="btn btn-link p-0" type="button" data-toggle="collapse" data-target="#collapse{entry_key}" aria-expanded="false" aria-controls="collapse{entry_key}" style="vertical-align: baseline;">expand bibtex</button>""")
+    s += ' / '.join(artefact_links)
+
+    entry_type = 'InProceedings' if entry.type == 'inproceedings' else entry.type.capitalize()
+    cite = f"<pre><code>@{entry_type}" + "{" + f"{entry_key}, \n"
+    if 'author' in entry.persons:
+        cite += "\tauthor = {" + f"{generate_person_html(entry.persons['author'], make_bold=False, add_links=False, connection=' and ')}" + "}, \n"
+    cite_fields = ['title', 'booktitle', 'year'] if entry.type == 'inproceedings' else ['title', 'note', 'year']
+    for entr in cite_fields:
+        if entr in entry.fields:
+            cite += f"\t{entr} = " + "{" + f"{entry.fields[entr]}" + "}, \n"
     cite += """}</pre></code>"""
     
-    s += f"""<div class="collapse" id="collapse{entry_key}"><div class="card card-body">{cite}</div></div>"""
+    if not hide_bibtex:
+        s += f"""<div class="collapse" id="collapse{entry_key}"><div class="card card-body">{cite}</div></div>"""
     s += """ </div> </div> </div>"""
     return s
 
