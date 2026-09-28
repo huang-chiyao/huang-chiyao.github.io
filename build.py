@@ -180,11 +180,11 @@ def get_paper_entry(entry_key, entry):
 
     <div class="col-sm-6">   """
 
-    html_url = entry.fields.get('html', '').strip()
-    if html_url and 'award' in entry.fields.keys():
-        s += f"""<a href="{html_url}" target="_blank">{entry.fields['title']}</a> <span style="color: red;">({entry.fields['award']})</span><br>"""
-    elif html_url:
-        s += f"""<a href="{html_url}" target="_blank">{entry.fields['title']}</a> <br>"""
+    title_url = entry.fields.get('titleurl', entry.fields.get('html', '')).strip()
+    if title_url and 'award' in entry.fields.keys():
+        s += f"""<a href="{title_url}" target="_blank">{entry.fields['title']}</a> <span style="color: red;">({entry.fields['award']})</span><br>"""
+    elif title_url:
+        s += f"""<a href="{title_url}" target="_blank">{entry.fields['title']}</a> <br>"""
     elif 'award' in entry.fields.keys():
         s += f"""{entry.fields['title']} <span style="color: red;">({entry.fields['award']})</span><br>"""
     else:
