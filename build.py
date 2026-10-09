@@ -4,9 +4,6 @@ import re
 
 MEDIA_HEIGHT = 180  # put this near the top of your file (once)
 
-# Preferred/display name (short form)
-PREFERRED_NAME = "Trey"
-
 def render_video(url: str) -> str:
     url_lower = url.lower()
     # YouTube
@@ -42,6 +39,15 @@ def render_video(url: str) -> str:
           allowfullscreen loading="lazy"></iframe>
 </div>'''
 
+    # Animated GIFs can fill the same preview slot as a video.
+    if url_lower.endswith(".gif"):
+        return f'''
+<div class="embed-responsive embed-responsive-16by9 my-2">
+  <img src="{url}" class="embed-responsive-item img-thumbnail"
+       alt="Animated reconstruction comparison" loading="lazy"
+       style="object-fit: contain; background-color: #fff;">
+</div>'''
+
     # Direct video files
     if url_lower.endswith((".mp4", ".webm", ".ogg")):
         return f'''
@@ -54,7 +60,7 @@ def render_video(url: str) -> str:
     return f'<a href="{url}" target="_blank">Video</a>'
 
 def get_personal_data():
-    name = ["Chi-Yao (Trey)", "Huang"]
+    name = ["Chi-Yao", "Huang"]
     email = "cy.huang@asu.edu"
     twitter = ""
     github = "huang-chiyao"
@@ -62,7 +68,7 @@ def get_personal_data():
     
     # Added style="text-align: justify;" to the text paragraphs
     bio_text = f"""
-        <p style="text-align: justify;">Hello and welcome to my place. I'm Chi-Yao (Trey) Huang (黃祺堯).</p>
+        <p style="text-align: justify;">Hello and welcome to my place. I'm Chi-Yao Huang (黃祺堯).</p>
 
         <p style="text-align: justify;">
             I am currently pursuing my Ph.D. under the guidance of Professor
@@ -112,6 +118,10 @@ def get_author_dict():
         'Zeel Bhatt': 'https://zeelbhatt.github.io/',
         'Khoa Vo': 'https://github.com/Chickeninvader',
         'Aayush Verma': 'https://aayush-v.github.io/',
+        'Aayush Atul Verma': 'https://aayush-v.github.io/',
+        'Arpitsinh Vaghela': 'https://arpitvaghela.github.io/',
+        'Kaustav Chanda': 'https://scholar.google.com/citations?user=LuiJZhMAAAAJ&hl=en',
+        'Bharatesh Chakravarthi': 'https://chakravarthi589.github.io/',
         'Duo Lu': 'https://www.rider.edu/about/faculty-staff-directory/duo-lu'
         }
 
@@ -120,7 +130,7 @@ def generate_person_html(persons, connection=", ", make_bold=True, make_bold_nam
     s = ""
     for p in persons:
         string_part_i = ""
-        for name_part_i in p.get_part('first') + p.get_part('last'): 
+        for name_part_i in p.get_part('first') + p.get_part('middle') + p.get_part('last'):
             if string_part_i != "":
                 string_part_i += " "
             string_part_i += name_part_i
