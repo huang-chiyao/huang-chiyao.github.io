@@ -43,9 +43,11 @@ def render_video(url: str, alt: str = "Animated reconstruction comparison") -> s
     # Animated GIFs can fill the same preview slot as a video.
     if url_lower.endswith(".gif"):
         return f'''<div class="embed-responsive embed-responsive-16by9 my-2">
+  <a href="{url}" class="embed-responsive-item" target="_blank" rel="noopener">
   <img src="{url}" class="embed-responsive-item img-thumbnail"
        alt="{escape(alt, quote=True)}" loading="lazy"
        style="object-fit: contain; background-color: #fff;">
+  </a>
 </div>'''
 
     # Direct video files
@@ -162,7 +164,9 @@ def get_paper_entry(entry_key, entry):
     <div class="col-sm-6">   <div class="row no-gutters align-items-center">
         <div class="col-6 pr-1">
             <div class="embed-responsive embed-responsive-4by3">
+                <a href="{img_src}" class="embed-responsive-item" target="_blank" rel="noopener">
                 <img src="{img_src}" class="embed-responsive-item img-thumbnail" alt="Project image" style="object-fit: contain; background-color: #fff;">
+                </a>
             </div>
         </div>
     """.replace("{img_src}", img_src)
@@ -244,7 +248,7 @@ def get_paper_entry(entry_key, entry):
 
 def get_talk_entry(entry_key, entry):
     s = """<div style="margin-bottom: 3em;"> <div class="row"><div class="col-sm-3">"""
-    s += f"""<img src="{entry.fields['img']}" class="img-fluid img-thumbnail" alt="Project image">"""
+    s += f"""<a href="{entry.fields['img']}" target="_blank" rel="noopener"><img src="{entry.fields['img']}" class="img-fluid img-thumbnail" alt="Project image"></a>"""
     s += """</div><div class="col-sm-9">"""
     s += f"""{entry.fields['title']}<br>"""
     s += f"""<span style="font-style: italic;">{entry.fields['booktitle']}</span>, {entry.fields['year']} <br>"""
@@ -334,7 +338,9 @@ def get_products_html():
     <div class="row no-gutters align-items-center">
       <div class="col-6 pr-1">
         <div class="embed-responsive embed-responsive-4by3">
+             <a href="{img_src}" class="embed-responsive-item" target="_blank" rel="noopener">
              <img src="{img_src}" class="embed-responsive-item img-thumbnail" alt="{product['name']} image" style="object-fit: contain; background-color: #fff;">
+             </a>
         </div>
       </div>
 """
@@ -418,7 +424,9 @@ def get_projects_html():
     <div class="row no-gutters align-items-center">
       <div class="col-6 pr-1">
         <div class="embed-responsive embed-responsive-4by3">
+             <a href="{img_src}" class="embed-responsive-item" target="_blank" rel="noopener">
              <img src="{img_src}" class="embed-responsive-item img-thumbnail" alt="{project['name']} image" style="object-fit: contain; background-color: #fff;">
+             </a>
         </div>
       </div>
 """
