@@ -1,10 +1,11 @@
 from pybtex.database.input import bibtex
 from urllib.parse import urlparse, parse_qs
+from html import escape
 import re
 
 MEDIA_HEIGHT = 180  # put this near the top of your file (once)
 
-def render_video(url: str) -> str:
+def render_video(url: str, alt: str = "Animated reconstruction comparison") -> str:
     url_lower = url.lower()
     # YouTube
     if "youtube.com" in url_lower or "youtu.be" in url_lower:
@@ -41,10 +42,9 @@ def render_video(url: str) -> str:
 
     # Animated GIFs can fill the same preview slot as a video.
     if url_lower.endswith(".gif"):
-        return f'''
-<div class="embed-responsive embed-responsive-16by9 my-2">
+        return f'''<div class="embed-responsive embed-responsive-16by9 my-2">
   <img src="{url}" class="embed-responsive-item img-thumbnail"
-       alt="Animated reconstruction comparison" loading="lazy"
+       alt="{escape(alt, quote=True)}" loading="lazy"
        style="object-fit: contain; background-color: #fff;">
 </div>'''
 
@@ -171,7 +171,7 @@ def get_paper_entry(entry_key, entry):
     if display_url:
         s += f"""
         <div class="col-6 pl-1 d-flex justify-content-center align-items-center">
-            {render_video(display_url).replace('embed-responsive-16by9', 'embed-responsive-4by3').replace('my-2', 'my-0')}
+            {render_video(display_url, entry.fields.get('videoalt', 'Animated reconstruction comparison')).replace('embed-responsive-16by9', 'embed-responsive-4by3').replace('my-2', 'my-0')}
         </div>
         """
     else:
