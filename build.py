@@ -380,12 +380,12 @@ def get_projects_html():
         {
             "name": "Toyota Mothership",
             "img": "assets/img/toyota_mothership.png",
-            "video": "https://youtu.be/a0ssZYkKJ98",
+            "video": "https://www.youtube.com/watch?v=1uyc7qnPXVY",
             "desc": "The Toyota Mothership project aims to develop a versatile, general-purpose aerial robot designed to assist with transportation, communication networks, and disaster prevention.",
             "contrib": [
                 "Engineered a robust latent-centric pose estimation model for high-altitude aerial robots, leveraging IR and IMU sensor data to ensure reliability across diverse weather conditions."
             ],
-            "link": "https://youtu.be/a0ssZYkKJ98"
+            "link": "https://www.youtube.com/watch?v=1uyc7qnPXVY"
         },
         {
             "name": "Object-Oriented SLAM (OOI-SLAM)",
